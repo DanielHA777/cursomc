@@ -13,6 +13,10 @@ private CategoriaRepository repo; // dependencia do obj tipo categoria
 	
 public Categoria find(Integer id) { 
 	 Optional<Categoria> obj = repo.findById(id); 
-	return obj.orElse(null); 
+	if(obj == null) {
+		throw new ObjNotFoundException("Objeto não encontrado" + id + ", Tipo" + Categoria.class.getName());
+	}
+	 
+	 return obj.orElse(null); 
 	} 
 }

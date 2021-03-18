@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.daniel.cursomc.domain.Categoria;
 import com.daniel.cursomc.services.CategoriaService;
 
+import javassist.bytecode.stackmap.BasicBlock.Catch;
+
 @RestController
 @RequestMapping(value = "categorias")
 public class CategoriaResource {
