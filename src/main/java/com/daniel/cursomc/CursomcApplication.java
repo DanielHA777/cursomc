@@ -8,13 +8,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.daniel.cursomc.domain.Categoria;
+import com.daniel.cursomc.domain.Produto;
 import com.daniel.cursomc.repository.CategoriaRepository;
+import com.daniel.cursomc.repository.ProdutoRepository;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
-@Autowired
+	@Autowired
 	private CategoriaRepository categoriaRepository;
-	
+
+	@Autowired
+    private ProdutoRepository produtoRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
 	}
@@ -23,6 +27,20 @@ public class CursomcApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Categoria cat1 = new Categoria(null, "informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
+
+		Produto p1 = new Produto(null, "computador", 2000.00);
+		Produto p2 = new Produto(null, "Mouser", 80.00);
+		Produto p3 = new Produto(null, "Impressora", 200.00);
+
+		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3)); // categoria 1 associado a os 3 produtos
+		cat2.getProdutos().addAll(Arrays.asList(p2));
+
+		p1.getCategorias().addAll(Arrays.asList(cat1));
+		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
+		p3.getCategorias().addAll(Arrays.asList(cat1));
+
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+         produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 	}
+	
 }
