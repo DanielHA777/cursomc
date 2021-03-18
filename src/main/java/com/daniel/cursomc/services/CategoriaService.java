@@ -11,8 +11,8 @@ import com.daniel.cursomc.repository.CategoriaRepository;
 public class CategoriaService {
 private CategoriaRepository repo; // dependencia do obj tipo categoria
 	
-	public Categoria buscar(Long id) {
-		Categoria obj = repo.findAllById(id);
-		return obj;
-	}
+public Categoria find(Integer id) { 
+	 Optional<Categoria> obj = repo.findById(id); 
+	return obj.orElse(null); 
+	} 
 }

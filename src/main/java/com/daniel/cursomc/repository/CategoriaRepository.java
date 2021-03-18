@@ -8,7 +8,5 @@ import com.daniel.cursomc.domain.Categoria;
 @Repository   // tipo especial de stream capaz de acessar os dados com base no tipo q vc passar
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
 
-	Categoria findAllById(Long id);
-
 
 }
