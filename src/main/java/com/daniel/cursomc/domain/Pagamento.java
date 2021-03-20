@@ -9,6 +9,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED) // uma tabela pra cada tipo pagamento
 public abstract class Pagamento implements Serializable {
@@ -18,6 +21,7 @@ public abstract class Pagamento implements Serializable {
 	private Integer id;
 	private Integer estado;
     
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "pedido_id")
 	@MapsId

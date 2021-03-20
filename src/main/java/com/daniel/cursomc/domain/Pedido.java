@@ -1,8 +1,6 @@
 package com.daniel.cursomc.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Pedido implements Serializable {
@@ -26,12 +22,16 @@ public class Pedido implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	//@Temporal(TemporalType.TIMESTAMP) 
+	//@JsonFormat(pattern = "dd/MM/yyyy")
 	//private java.util.Date instante;
 	private String data;
 
+	//@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pagamento pagamento;
-
+    
+	//@JsonManagedReference
+	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
