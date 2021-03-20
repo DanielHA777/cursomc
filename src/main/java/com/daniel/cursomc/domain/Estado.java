@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 public class Estado implements Serializable {
 
@@ -17,7 +19,8 @@ public class Estado implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-    
+   
+	@JsonBackReference
 	@OneToMany(mappedBy = "estado") // mapeamento reverso
 	private List<Cidade> cidades = new ArrayList<>();
 

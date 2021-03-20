@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Cliente implements Serializable {
 
@@ -24,14 +26,19 @@ public class Cliente implements Serializable {
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
+	
+	@JsonManagedReference
     @OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
     @ElementCollection
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
-
-	public Cliente() {
+   
+    @OneToMany(mappedBy = "cliente")// mapeado por cliente
+    private List<Pedido> Pedidos = new ArrayList<>();
+	
+    public Cliente() {
 
 	}
 
@@ -123,6 +130,14 @@ public class Cliente implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public List<Pedido> getPedidos() {
+		return Pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		Pedidos = pedidos;
 	}
 
 }
