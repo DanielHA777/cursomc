@@ -6,18 +6,12 @@ import org.springframework.http.HttpStatus;
 
 public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	private Integer status;
 	private String msg;
-	private long timeStamp;
-
-	public StandardError(Integer status, String msg, long timeStamp) {
-		super();
-		this.status = status;
-		this.msg = msg;
-		this.timeStamp = timeStamp;
-	}
-
-	public StandardError(HttpStatus notFound, String message, long currentTimeMillis) {
+	private Long timeStamp;
+	
+	public StandardError(Integer status, String msg, Long timeStamp) {
 		super();
 		this.status = status;
 		this.msg = msg;
@@ -40,12 +34,11 @@ public class StandardError implements Serializable {
 		this.msg = msg;
 	}
 
-	public long getTimeStamp() {
+	public Long getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(long timeStamp) {
+	public void setTimeStamp(Long timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-
 }

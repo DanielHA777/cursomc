@@ -7,11 +7,14 @@ public class FieldMessage implements Serializable {
 	
 	private String fieldName;
 	private String message;
-	private Long timestamp;
 	
-	public FieldMessage()
-	{
-		
+	public FieldMessage() {
+	}
+
+	public FieldMessage(String fieldName, String message) {
+		super();
+		this.fieldName = fieldName;
+		this.message = message;
 	}
 
 	public String getFieldName() {
@@ -29,22 +32,4 @@ public class FieldMessage implements Serializable {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-	public Long getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(Long timestamp) {
-		this.timestamp = timestamp;
-	}
-
-	public FieldMessage(String fieldName, String message, Long timestamp) {
-		super();
-		this.fieldName = fieldName;
-		this.message = message;
-		this.timestamp = timestamp;
-	}
-
-	
-	
 }

@@ -10,14 +10,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.daniel.cursomc.services.ObjNotFoundException;
 
-@ControllerAdvice
-public class DataIntegrityException extends RuntimeException{
-	private static final long serialVersionUID = 1L; // implementando classe auxiliar que vai interceptar as exceções
+public class DataIntegrityException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
 	
 	public DataIntegrityException(String msg) {
 		super(msg);
 	}
+	
 	public DataIntegrityException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
+
 }
