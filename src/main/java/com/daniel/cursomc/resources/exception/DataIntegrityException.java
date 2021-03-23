@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.daniel.cursomc.services.ObjNotFoundException;
 
 @ControllerAdvice
-public class DataIntegrityException { // implementando classe auxiliar que vai interceptar as exceções
-	@ExceptionHandler(ObjNotFoundException.class)
-	public ResponseEntity<StandardError> objectNotFound(ObjNotFoundException e, HttpServletRequest request) {
-		StandardError err = new StandardError(HttpStatus.NOT_FOUND, e.getMessage(), System.currentTimeMillis());
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+public class DataIntegrityException extends RuntimeException{
+	private static final long serialVersionUID = 1L; // implementando classe auxiliar que vai interceptar as exceções
+	
+	public DataIntegrityException(String msg) {
+		super(msg);
+	}
+	public DataIntegrityException(String msg, Throwable cause) {
+		super(msg, cause);
 	}
 }
