@@ -16,7 +16,7 @@ public class PagamentoComBoleto extends Pagamento {
 	private static final long serialVersionUID = 1L;
 
 	@JsonFormat(pattern="dd/MM/yyyy")
-	private Date dataVencimento;
+	private java.util.Date dataVencimento;
 
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dataPagamento;
@@ -24,13 +24,13 @@ public class PagamentoComBoleto extends Pagamento {
 	public PagamentoComBoleto() {
 	}
 
-	public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
+	public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, java.util.Date dataVencimento, Date dataPagamento) {
 		super(id, estado, pedido);
 		this.dataPagamento = dataPagamento;
 		this.dataVencimento = dataVencimento;
 	}
 
-	public Date getDataVencimento() {
+	public java.util.Date getDataVencimento() {
 		return dataVencimento;
 	}
 
