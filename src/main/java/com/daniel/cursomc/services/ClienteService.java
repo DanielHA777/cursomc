@@ -1,6 +1,6 @@
 package com.daniel.cursomc.services;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -13,12 +13,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.daniel.cursomc.domain.Categoria;
+
 import com.daniel.cursomc.domain.Cidade;
 import com.daniel.cursomc.domain.Cliente;
 import com.daniel.cursomc.domain.Endereco;
 import com.daniel.cursomc.domain.TipoCliente;
-import com.daniel.cursomc.domain.Cliente;
+
 import com.daniel.cursomc.dto.ClienteDTO;
 import com.daniel.cursomc.dto.ClienteNewDTO;
 import com.daniel.cursomc.repository.ClienteRepository;

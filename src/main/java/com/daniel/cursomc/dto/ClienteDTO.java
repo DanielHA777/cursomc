@@ -8,7 +8,7 @@ public class ClienteDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
     private Integer id; 
-   //@NotEmpty(message="prenchimento obrigatorio")
+  // @NotEmpty(message="prenchimento obrigatorio")
     //@lenght (min=5, max=30, message"0 tamanho errado")
     private String nome;
    

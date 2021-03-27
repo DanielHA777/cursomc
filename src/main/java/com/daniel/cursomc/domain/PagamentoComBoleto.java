@@ -7,52 +7,45 @@ import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 @Entity
+@JsonTypeName("pagamentoComBoleto")
 public class PagamentoComBoleto extends Pagamento {
-
 	private static final long serialVersionUID = 1L;
-	//@Temporal(TemporalType.DATE)
-	//private Calendar dataVencimento;
-	//@Temporal(TemporalType.DATE)
-	//private Calendar dataPagamento;
-	private String dataVencimento;
-	private String dataPagamento;
 
+	@JsonFormat(pattern="dd/MM/yyyy")
+	private Date dataVencimento;
+
+	@JsonFormat(pattern="dd/MM/yyyy")
+	private Date dataPagamento;
 
 	public PagamentoComBoleto() {
-		
 	}
 
-
-
-
-	public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, String dataVencimento, String dataPagamento) {
+	public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
 		super(id, estado, pedido);
-		this.dataVencimento = dataVencimento;
 		this.dataPagamento = dataPagamento;
+		this.dataVencimento = dataVencimento;
 	}
 
-
-
-
-	public String getData() {
+	public Date getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setData(String dataVencimento) {
-		this.dataVencimento = dataVencimento;
+	public void setDataVencimento(java.util.Date date) {
+		this.dataVencimento = (Date) date;
 	}
 
-
-
-	public String getDataPagamento() {
+	public Date getDataPagamento() {
 		return dataPagamento;
 	}
 
-
-
-	public void setDataPagamento(String dataPagamento) {
+	public void setDataPagamento(Date dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
 
+	
+	
 }
