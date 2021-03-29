@@ -1,9 +1,7 @@
 package com.daniel.cursomc.resources;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +19,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.daniel.cursomc.domain.Categoria;
 import com.daniel.cursomc.dto.CategoriaDTO;
 import com.daniel.cursomc.services.CategoriaService;
-
-import javassist.bytecode.stackmap.BasicBlock.Catch;
 
 @RestController
 @RequestMapping(value="/categorias")

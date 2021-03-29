@@ -1,6 +1,6 @@
 package com.daniel.cursomc.domain;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,9 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.UniqueConstraint;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Cliente implements Serializable {

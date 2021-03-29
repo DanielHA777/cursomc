@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.daniel.cursomc.services.DBService;
+import com.daniel.cursomc.services.EmailService;
+import com.daniel.cursomc.services.MockEmailService;
 import com.sun.el.parser.ParseException;
 
 @Configuration
@@ -21,8 +23,8 @@ public class TestConfig {
 		return true;
 	}
 	
-	/*@Bean
+	@Bean // faz o metodo ficar disponivel como componente no sistema
 	public EmailService emailService() {
 		return new MockEmailService();
-	}*/
+	}
 }

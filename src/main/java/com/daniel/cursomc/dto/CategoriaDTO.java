@@ -2,8 +2,6 @@ package com.daniel.cursomc.dto;
 
 import java.io.Serializable;
 
-import org.hibernate.annotations.NotFound;
-
 import com.daniel.cursomc.domain.Categoria;
 
 public class CategoriaDTO implements Serializable {

@@ -1,12 +1,8 @@
 package com.daniel.cursomc.domain;
 
-import java.io.Serializable;
 import java.sql.Date;
-import java.util.Calendar;
 
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeName;
