@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.daniel.cursomc.services.DBService;
+import com.daniel.cursomc.services.EmailService;
+import com.daniel.cursomc.services.MockEmailService;
+import com.daniel.cursomc.services.SmtpEmailService;
 import com.sun.el.parser.ParseException;
 
 @Configuration
@@ -16,12 +19,13 @@ public class DevConfig {
 	@Autowired
 	private DBService dbService;
 	
-	@Value("${spring.jpa.hibernate.ddl-auto}")// pegando o valor da chave, se for diferente de create n faz nada
+	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String strategy;
 	
 	@Bean
 	public boolean instantiateDatabase() throws ParseException, java.text.ParseException {
-		if(!"create".equals(strategy)) {
+		
+		if (!"create".equals(strategy)) {
 			return false;
 		}
 		
@@ -29,8 +33,9 @@ public class DevConfig {
 		return true;
 	}
 	
-	/*@Bean
+	@Bean
 	public EmailService emailService() {
-		return new MockEmailService();
-	}*/
+		return new SmtpEmailService();
+	}
+	
 }

@@ -43,6 +43,8 @@ public class PedidoService {
 	@Autowired
 	private EmailService emailService; // injeção de dependencia, instancia de emailService
 	
+	
+	
 	public Pedido find(Integer id) {
 		Optional<Pedido> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(	"Objeto não encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName(), null));
@@ -67,7 +69,7 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		emailService.sendOrderConfirmationEmail(obj);
+		emailService.sendOrderConfirmationHtmlEmail(obj);
 		return obj;
 	}
 	
