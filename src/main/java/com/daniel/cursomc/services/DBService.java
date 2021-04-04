@@ -18,6 +18,7 @@ import com.daniel.cursomc.domain.Pagamento;
 import com.daniel.cursomc.domain.PagamentoComBoleto;
 import com.daniel.cursomc.domain.PagamentoComCartao;
 import com.daniel.cursomc.domain.Pedido;
+import com.daniel.cursomc.domain.Perfil;
 import com.daniel.cursomc.domain.Produto;
 import com.daniel.cursomc.domain.TipoCliente;
 import com.daniel.cursomc.repository.CategoriaRepository;
@@ -55,7 +56,7 @@ public class DBService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	
-	public void instantiateTestDatabase() throws ParseException {
+	public void instantiateTestDatabase() throws ParseException, java.text.ParseException {
 		
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
@@ -224,10 +225,10 @@ public class DBService {
 		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
 		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
 		
-		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
+		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.Quitado, ped1, 6);
 		ped1.setPagamento(pagto1);
 		
-		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
+		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.Pendente, ped2, sdf.parse("20/10/2017 00:00"), null);
 		ped2.setPagamento(pagto2);
 		
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));

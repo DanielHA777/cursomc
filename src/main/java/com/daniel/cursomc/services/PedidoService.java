@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.licensemanager.model.AuthorizationException;
 import com.daniel.cursomc.domain.Cliente;
 import com.daniel.cursomc.domain.EstadoPagamento;
 import com.daniel.cursomc.domain.ItemPedido;
@@ -18,6 +19,7 @@ import com.daniel.cursomc.domain.Pedido;
 import com.daniel.cursomc.repository.ItemPedidoRepository;
 import com.daniel.cursomc.repository.PagamentoRepository;
 import com.daniel.cursomc.repository.PedidoRepository;
+import com.daniel.cursomc.security.UserSS;
 
 @Service
 public class PedidoService {
@@ -73,13 +75,13 @@ public class PedidoService {
 		return obj;
 	}
 	
-	/*public Page<Pedido> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
-		UserSs user = UserService.authenticated();
+	public Page<Pedido> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		UserSS user = UserService.authenticated();
 		if (user == null) {
 			throw new AuthorizationException("Acesso negado");
 		}
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		Cliente cliente =  clienteService.find(user.getId());
 		return repo.findByCliente(cliente, pageRequest);
-	}*/
+	}
 }
