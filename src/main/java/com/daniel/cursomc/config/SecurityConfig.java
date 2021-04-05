@@ -3,6 +3,8 @@ package com.daniel.cursomc.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,10 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.amazonaws.HttpMethod;
-import com.amazonaws.services.appconfig.model.Environment;
 import com.daniel.cursomc.security.JWTAuthenticationFilter;
 import com.daniel.cursomc.security.JWTAuthorizationFilter;
 import com.daniel.cursomc.security.JWTUtil;
@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userDetailsService;
 	
 	@Autowired
-    private Environment env;
+    private org.springframework.core.env.Environment env;
 	
 	@Autowired
 	private JWTUtil jwtUtil;
@@ -55,13 +55,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {   
 		
-		if (Arrays.asList(env.getActiveProfiles()).contains("test")) { // pegando pfiles ativos do projeto, se estiver no profuile test, vou querer cessar o db h2
+		if (java.util.Arrays.asList(env.getActiveProfiles()).contains("test")) { // pegando pfiles ativos do projeto, se estiver no profuile test, vou querer cessar o db h2
             http.headers().frameOptions().disable(); // liberando acessoao h2
         }
 		
 		http.cors().and().csrf().disable(); // configuraçãoes, desabilitando csrf método de segurança
-		http.authorizeRequests()
-			.antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
+		http.authorizeRequests().antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 			.antMatchers(PUBLIC_MATCHERS).permitAll()
 			.anyRequest().authenticated();  // para todo resto exige autenticação
