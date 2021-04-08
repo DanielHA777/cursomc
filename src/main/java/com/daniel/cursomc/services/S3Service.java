@@ -19,13 +19,13 @@ import com.daniel.cursomc.resources.exception.FileException;
 @Service
 public class S3Service {
 
-	private org.slf4j.Logger LOG = LoggerFactory.getLogger(S3Service.class);
+	private static org.slf4j.Logger LOG = LoggerFactory.getLogger(S3Service.class);
 
 	@Autowired
-	private AmazonS3 s3client;
+	private static AmazonS3 s3client;
 
 	@Value("${s3.bucket}")
-	private String bucketName;
+	private static String bucketName;
 
 	public URI uploadFile(MultipartFile multipartFile) { // faz upload do arquivo no s3
 		try {
@@ -38,14 +38,15 @@ public class S3Service {
 		}
 	}
 
-	public URI uploadFile(InputStream is, String fileName, String contentType) {
+	public static URI uploadFile(InputStream is, String fileName, String contentType) {
 		try {
 			ObjectMetadata meta = new ObjectMetadata();
 			meta.setContentType(contentType);
 			LOG.info("Iniciando upload");
 			s3client.putObject(bucketName, fileName, is, meta);
 			LOG.info("Upload finalizado");
-			return s3client.getUrl(bucketName, fileName).toURI();
+			//pegando url direto na amazon
+			return s3client.getUrl(bucketName, fileName).toURI();//retorna obj do tipo url
 		} catch (URISyntaxException e) {
 			throw new FileException("Erro ao converter URL para URI");
 		}

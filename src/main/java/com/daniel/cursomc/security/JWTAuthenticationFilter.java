@@ -68,7 +68,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		String username = ((UserSS) ((org.springframework.security.core.Authentication) auth).getPrincipal()).getUsername(); // retorna usuario do spring security
 		String token = jwtUtil.generateToken(username); // pega o email
 		res.addHeader("Authorization", "Bearer " + token); // resposta com o token
-		res.addHeader("access-control-expose-headers", "Authorization");
+		 res.addHeader("access-control-expose-headers", "Authorization");
 	}
 
 	private class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {

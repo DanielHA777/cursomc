@@ -43,11 +43,11 @@ public class ClienteService {
 	@Autowired
 	private BCryptPasswordEncoder pe;
 	
-	//@Autowired
-	//private S3Service s3Service;
+	@Autowired
+	private S3Service s3Service;
 	
-//	@Autowired
-	//private ImageService imageService;
+	@Autowired
+	private ImageService imageService;
 		
 	@Value("${img.prefix.client.profile}")
 	private String prefix;
@@ -144,12 +144,12 @@ public class ClienteService {
 			throw new AuthorizationException("Acesso negado");
 		}
 		
-	//	BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
-		//jpgImage = imageService.cropSquare(jpgImage);
-	//	jpgImage = imageService.resize(jpgImage, size);
+		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		jpgImage = imageService.cropSquare(jpgImage);
+		jpgImage = imageService.resize(jpgImage, size);
 		
 		String fileName = prefix + user.getId() + ".jpg";
-		return null;
-		//return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
+		//return null;
+		return S3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 	}
 }
